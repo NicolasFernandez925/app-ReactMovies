@@ -4,7 +4,7 @@ import './movieList.scss'
 
 export const MovieList = ({movies}) => {
     
-    const {result, error, loading} = movies;
+    const {result, loading} = movies;
 
     if(loading|| !result.results){
         return '';

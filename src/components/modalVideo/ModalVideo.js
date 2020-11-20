@@ -30,7 +30,6 @@ export const ModalVideo = (props) => {
         
     }, [videoKey, videoPlatform])
 
-    console.log(urlVideo);
     return (
         <Modal 
             className="modal-video"

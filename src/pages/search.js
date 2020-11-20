@@ -37,7 +37,6 @@ const Search = (props) => {
         setSearchValue(target.value);
     }
 
-    console.log(movieList.results);
     return (
         <div className="container">
            <div className="row">

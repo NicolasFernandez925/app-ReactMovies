@@ -1,9 +1,10 @@
 import { Button } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import { usePalette } from 'react-palette'
 import { useParams } from 'react-router-dom';
 import { Loading } from '../components/loading/Loading';
 import { ModalVideo } from '../components/modalVideo/ModalVideo';
+import { MovieList } from '../components/movieList/MovieList';
 import { useFetch } from '../hooks/useFetch';
 import { API_KEY, URL_API } from '../utils/constant';
 
@@ -21,34 +22,46 @@ export const Movie = () => {
         return <Loading/>
     }
     return (
-        <RenderMovie movie={movieInfo}/>
+        <RenderMovie movie={movieInfo} id={id}/>
     )
 }
 
 
-const RenderMovie = ({movie}) => {
+const RenderMovie = ({movie, id}) => {
     
     const {result:{backdrop_path, poster_path}} = movie;
 
     const backDropPath = `https://image.tmdb.org/t/p/original${backdrop_path}`
     const { data } = usePalette(backDropPath);
 
+    // me traigo las peliculas similares al id de la pelicula que se selecciono
+    const movies= useFetch(
+        `${URL_API}/movie/${id}/similar?api_key=${API_KEY}&language=es-ES&page=1`
+    )
     return (
-        <div 
-            className="movie__bg container-fluid" 
-            style={{ backgroundImage: `URL('${backDropPath}')`}}        
-        >
-            <div className="movie__dark"></div>
- 
-            <div className="row movie__content ">
-                <div className="col-12 col-md-6 movie__poster">      
-                    <PosterMovie image={poster_path}/>
-                </div>  
-                <div className="col-12 col-md-6">
-                    <MovieInfo data={data} movieInfo ={movie}/>
-                </div>  
+        <>
+            <div 
+                className="movie__bg container-fluid" 
+                style={{ backgroundImage: `URL('${backDropPath}')`}}        
+            >
+                <div className="movie__dark"></div>
+    
+                <div className="row movie__content ">
+                    <div className="col-12 col-md-6 movie__poster">      
+                        <PosterMovie image={poster_path}/>
+                    </div>  
+                    <div className="col-12 col-md-6">
+                        <MovieInfo data={data} movieInfo ={movie}/>
+                    </div>  
+                </div>
             </div>
-        </div>
+            <div className="container">
+                <h2 className="text-center py-5">Peliculas similares</h2>
+                
+                <MovieList movies={movies} />
+            </div>
+
+        </>
     )
 }
 
