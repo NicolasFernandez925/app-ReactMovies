@@ -37,6 +37,7 @@ const Search = (props) => {
         setSearchValue(target.value);
     }
 
+    console.log(movieList.results);
     return (
         <div className="container">
            <div className="row">
@@ -51,11 +52,11 @@ const Search = (props) => {
                </div>
                {
                    (movieList.results && movieList.results.length > 1) && (
-                       <div className="row">
+                       
                            <div className="col-12">
                                <MoviesCatalog movies ={movieList} />
                            </div>
-                       </div>  
+                       
                    )
                }
            </div>
