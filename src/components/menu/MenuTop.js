@@ -1,13 +1,24 @@
-import React from 'react'
-import {Menu} from 'antd'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import {Link,NavLink } from 'react-router-dom'
 
 import './menu.scss'
 
 export const MenuTop = () => {
+
+
+    const [state, setstate] = useState(false);
+    
+    const handleClickMenuResponsive = ( )=> {
+        setstate(!state);
+    }
+
+    const handleCloseMenu = () => {
+        setstate(true);
+    }
+
     return (
 
-        <div className="menu-top">
+        <div className="menu-top container-fluid">
             <div className="menu-top__logo">
                 <Link to="/">
                     <img 
@@ -17,27 +28,49 @@ export const MenuTop = () => {
                     />   
                 </Link>
             </div>
-            <Menu
-                theme="dark"
-                mode = "horizontal"
-                overflowedIndicator = {<i className="fas fa-bars"></i>}
-                style ={{lineHeigth : "64px", marginLeft: "20px"}}
-            >
-                <Menu.Item key="1">
-                        <Link to = "/">Inicio</Link>
-                </Menu.Item>
-                <Menu.Item key="2">
-                        <Link to = "/new-movies">Ultimos lanzamientos</Link>
-                </Menu.Item>
-                <Menu.Item key="3">
-                        <Link to = "/popular">Populares</Link> 
-                </Menu.Item>
-                <Menu.Item key="4">
-                        <Link to = "/search">Buscador</Link>
-                </Menu.Item>
-
-            </Menu>
-
+            <div className={(state) ? " menu__nav-link active-submenu " : "menu__nav-link"}>
+                <NavLink 
+                    className="menu__item-link" 
+                    to = "/"
+                    onClick={handleCloseMenu}
+                    >
+                    <i className="fas fa-home mr-2"></i>
+                    Inicio 
+                </NavLink>
+                <NavLink 
+                    activeClassName="selected" 
+                    className="menu__item-link"  
+                    to = "/new-movies"
+                    onClick={handleCloseMenu}
+                    >
+                    <i className="fas fa-film mr-2"></i>
+                    Ultimos lanzamientos 
+                </NavLink>
+                <NavLink 
+                    activeClassName="selected" 
+                    className="menu__item-link"  
+                    to = "/popular"
+                    onClick={handleCloseMenu}
+                    >
+                    <i className="fas fa-film mr-2"></i>
+                    Populares 
+                </NavLink>
+                <NavLink 
+                    activeClassName="selected" 
+                    className="menu__item-link"  
+                    to = "/search"
+                    onClick={handleCloseMenu}
+                    >
+                    <i className="fas fa-search mr-2"></i>
+                    Buscador
+                </NavLink>
+            </div>
+            <div className="me__icon-hamburguer d-block d-md-none ml-auto">
+                    <i className="fas fa-bars"
+                       onClick={handleClickMenuResponsive}
+                    >
+                    </i>  
+            </div>
         </div>
     )
 }

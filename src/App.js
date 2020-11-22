@@ -16,9 +16,9 @@ export const App = () => {
 
     return (
            <Router>
-               <Header>
+               
                    <MenuTop/>
-               </Header>
+               
                 <div>
                     <Switch>
                         <Route exact path="/" > 
