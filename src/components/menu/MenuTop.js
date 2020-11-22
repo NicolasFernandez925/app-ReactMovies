@@ -7,8 +7,8 @@ export const MenuTop = () => {
 
 
     const [state, setstate] = useState(false);
-    
-    const handleClickMenuResponsive = ( )=> {
+
+    const handleClickMenuResponsive = () => {
         setstate(!state);
     }
 

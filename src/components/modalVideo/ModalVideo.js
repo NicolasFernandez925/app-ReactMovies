@@ -8,7 +8,6 @@ export const ModalVideo = (props) => {
 
     const { videoKey , videoPlatform, isOpen, close} = props;
     const [urlVideo, setUrlVideo] = useState(null);
-    console.log(videoPlatform)
 
     useEffect(() => {
         

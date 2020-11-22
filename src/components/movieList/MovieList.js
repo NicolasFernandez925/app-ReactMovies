@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './movieList.scss'
 
 export const MovieList = ({movies}) => {
     
     const {result, loading} = movies;
+    
 
     if(loading|| !result.results){
         return '';
@@ -33,6 +34,15 @@ export const MovieList = ({movies}) => {
 
 const ItemMovie = ({movie}) => {
     const {id, poster_path, title} = movie;
+
+    const handleClickTop = () => {
+       window.scroll({
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth'
+      });
+    }
+
     return (
         <li className="movieList__item-li">
             <img 
@@ -44,6 +54,7 @@ const ItemMovie = ({movie}) => {
             <Link 
                 to={`/movie/${id}`}
                 className="movieList__buttom-movie"
+                onClick={handleClickTop}
             >
             <i 
                 className="fas fa-arrow-right">
