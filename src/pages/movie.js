@@ -2,12 +2,13 @@ import { Button } from 'antd';
 import React, {useState } from 'react';
 
 import { usePalette } from 'react-palette'
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Loading } from '../components/loading/Loading';
 import { ModalVideo } from '../components/modalVideo/ModalVideo';
 import { MovieList } from '../components/movieList/MovieList';
 import { useFetch } from '../hooks/useFetch';
 import { API_KEY, URL_API } from '../utils/constant';
+
 
 import './stylesPages/movie.scss';
 
@@ -88,6 +89,18 @@ const MovieInfo = ({movieInfo,data}) =>{
     const {id, genres, title, overview, release_date} = movieInfo.result;
     const [isVisibleModal, setIsVisibleModal]  = useState(false);
 
+   const history =  useHistory();
+
+   const handleReturn = () =>{
+       
+        if(history.length <= 2){
+            history.push('/');
+        }
+        else{
+            history.goBack();
+        }   
+    }
+
     const videoMovie = useFetch(
         `${URL_API}/movie/${id}/videos?api_key=${API_KEY}&language=es-Es`
     )
@@ -143,6 +156,18 @@ const MovieInfo = ({movieInfo,data}) =>{
                     }
                     
                 </ul>
+                <div className="row">
+                    <div className="col-12">
+                        <button
+                            style={{color: `${data.vibrant}`,
+                                    backgroundColor: `${data.darkMuted}`}}
+                            className="movie__buttom_return"
+                            onClick={handleReturn}
+                        >
+                           <i class="fas fa-long-arrow-alt-left"></i> Volver atrás
+                        </button>
+                    </div>
+                </div>
 
             </div>
          </>

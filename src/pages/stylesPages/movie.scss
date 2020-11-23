@@ -39,7 +39,7 @@
         h2{
             color: white;
             margin: 24px 0px;
-            font-size: 45px;
+            font-size: 30px;
         }
         h4{
             margin-top: 15px;
@@ -77,6 +77,20 @@
 
             }
         }
+        .movie__buttom_return{
+            font-size: 15px;
+           
+            border: 1px solid rgb(75, 75, 75);
+            padding: 7px;
+            border-radius: 20px;
+            margin-top: 30px;
+            font-weight: 600;
+            border: none;
+            &:focus{
+                outline: none;
+            }
+        }
+
         p{
             font-size: 14px;
             margin-top: 22px;
@@ -89,7 +103,7 @@
 @media  (max-width: 600px) {
 
     .movie__bg {
-        height: 850px;
+        height: 1000px;
     }
 
     .movie__bg .movie__content .movie__poster {

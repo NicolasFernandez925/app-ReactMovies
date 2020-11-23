@@ -30,18 +30,21 @@
         width: 700px;
     }
     .slider__button{
-        text-decoration: none;
-        padding: 6px;
-        border-radius: 2px;
-        color: white;
-        margin-top: 30px;
-        font-size: 18px;
-        display: inline-block;
-        transition: 400ms ease;
-        text-decoration: underline;
-        &:hover{
-            color:rgb(189,0,105);
-         
-        }
+            font-size: 15px;
+            background-color: transparent;
+            border: 1px solid rgb(75, 75, 75);
+            padding: 8px 20px;
+            margin-top: 30px;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: 400ms ease;
+            display: inline-block;
+            color: white;
     }
+    .slider__button:focus{
+            outline: none;
+    }
+  
+        
+      
 }
