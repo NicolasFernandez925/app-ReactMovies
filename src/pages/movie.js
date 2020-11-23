@@ -1,5 +1,6 @@
 import { Button } from 'antd';
 import React, {useState } from 'react';
+
 import { usePalette } from 'react-palette'
 import { useParams } from 'react-router-dom';
 import { Loading } from '../components/loading/Loading';
@@ -38,6 +39,11 @@ const RenderMovie = ({movie, id}) => {
     const movies= useFetch(
         `${URL_API}/movie/${id}/similar?api_key=${API_KEY}&language=es-ES&page=1`
     )
+
+    if(movies.loading || !movies.result.results){
+       return <Loading />
+    }
+
     return (
         <>
             <div 
@@ -55,11 +61,15 @@ const RenderMovie = ({movie, id}) => {
                     </div>  
                 </div>
             </div>
-            <div className="container">
-                <h2 className="text-center py-5">Peliculas similares</h2>
-                
-                <MovieList movies={movies} />
-            </div>
+
+            {
+                (movies.result.results.length > 0) && (
+                    <div className="container">
+                        <h2 className="text-center py-5">Peliculas similares</h2>          
+                        <MovieList movies={movies} />
+                    </div>
+                )
+            }      
 
         </>
     )

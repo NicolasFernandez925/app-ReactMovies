@@ -24,11 +24,22 @@ const MovieCard = ({movie}) => {
     const { id, title, poster_path } = movie;
 
     const { Meta } = Card;
-    const posterPath = `https://image.tmdb.org/t/p/original/${poster_path}`
+    const posterPath = `https://image.tmdb.org/t/p/original/${poster_path}`;
+
+    const handleClickScrollTop = () => {
+        window.scroll({
+         top: 0, 
+         left: 0, 
+         behavior: 'smooth'
+       });
+     }
 
     return (
         <div className="col-12 col-md-2 movie__catalog">
-           <Link to= {`/movie/${id}`} >
+           <Link 
+                to= {`/movie/${id}`} 
+                onClick={handleClickScrollTop}
+           >
                 <Card 
                     hoverable
                     style = {{width: 240}}

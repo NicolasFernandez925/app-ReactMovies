@@ -5,7 +5,6 @@ import './menu.scss'
 
 export const MenuTop = () => {
 
-
     const [state, setstate] = useState(false);
 
     const handleClickMenuResponsive = () => {
@@ -17,7 +16,6 @@ export const MenuTop = () => {
     }
 
     return (
-
         <div className="menu-top container-fluid">
             <div className="menu-top__logo">
                 <Link to="/">
@@ -28,7 +26,7 @@ export const MenuTop = () => {
                     />   
                 </Link>
             </div>
-            <div className={(state) ? " menu__nav-link active-submenu " : "menu__nav-link"}>
+            <div className={(!state) ? " menu__nav-link active-submenu " : "menu__nav-link"}>
                 <NavLink 
                     className="menu__item-link" 
                     to = "/"
