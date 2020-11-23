@@ -7,7 +7,7 @@ export const MovieList = ({movies}) => {
     const {result, loading} = movies;
     
 
-    if(loading|| !result.results){
+    if(loading || !result.results){
         return '';
     }
 

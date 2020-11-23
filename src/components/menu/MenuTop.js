@@ -12,7 +12,7 @@ export const MenuTop = () => {
     }
 
     const handleCloseMenu = () => {
-        setstate(true);
+        setstate(false);
     }
 
     return (
@@ -26,7 +26,7 @@ export const MenuTop = () => {
                     />   
                 </Link>
             </div>
-            <div className={(!state) ? " menu__nav-link active-submenu " : "menu__nav-link"}>
+            <div className={(state) ? " menu__nav-link " : "menu__nav-link active-submenu "}>
                 <NavLink 
                     className="menu__item-link" 
                     to = "/"
@@ -64,10 +64,10 @@ export const MenuTop = () => {
                 </NavLink>
             </div>
             <div className="me__icon-hamburguer d-block d-md-none ml-auto">
-                    <i className="fas fa-bars"
-                       onClick={handleClickMenuResponsive}
-                    >
-                    </i>  
+                    <i className={(state) ? "fas fa-times" : "fas fa-bars"} 
+                         onClick={handleClickMenuResponsive}>
+                    </i> 
+                           
             </div>
         </div>
     )
