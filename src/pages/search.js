@@ -3,6 +3,7 @@ import {Input} from 'antd'
 import { withRouter } from 'react-router-dom'
 import queryString from 'query-string'
 import { MoviesCatalog } from '../components/moviesCatalog/MoviesCatalog'
+import { useDebounce } from 'use-debounce';
 import { API_KEY, URL_API } from '../utils/constant'
 
 import './stylesPages/search.scss'
@@ -12,11 +13,11 @@ const Search = (props) => {
     const {location, history} = props;
     const [movieList, setMovieList] = useState([]);
     const [searchValue, setSearchValue] = useState('');
+    const [search] = useDebounce(location.search, 600);
 
     useEffect(() => {
 
         (async() => {
-        
             const searchValue = queryString.parseUrl(location.search);
             const { s } = searchValue.query;
             const response = await fetch(`
@@ -28,7 +29,7 @@ const Search = (props) => {
 
         })()
         
-    }, [location.search])
+    }, [search])
     
     const onChangeSearch = ({target}) => {
         const urlParams = queryString.parse(location.search);
@@ -49,15 +50,22 @@ const Search = (props) => {
                     
                     />
                </div>
-               {
-                   (movieList.results && movieList.results.length > 1) && (
-                       
-                           <div className="col-12">
-                               <MoviesCatalog movies ={movieList} />
-                           </div>
-                       
-                   )
-               }
+    
+                    {
+                        (movieList.results && movieList.results.length > 1) ?
+                            (   <div className="col-12">
+                                    <MoviesCatalog movies ={movieList} />
+                                </div>
+                            )
+                            
+                        : (searchValue !== '' && movieList.results.length <= 0) ?
+                            (   <div className="col-12 text-center">
+                                    <h4>No hay resultados...</h4>
+                                </div>
+                            )
+                        : ''
+                    }
+                    
            </div>
         </div>
     )

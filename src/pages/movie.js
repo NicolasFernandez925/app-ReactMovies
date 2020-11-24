@@ -160,7 +160,7 @@ const MovieInfo = ({movieInfo,data}) =>{
                     <div className="col-12">
                         <button
                             style={{color: `${data.vibrant}`,
-                                    backgroundColor: `${data.darkMuted}`}}
+                                    backgroundColor: `${data.darkVibrant}`}}
                             className="movie__buttom_return"
                             onClick={handleReturn}
                         >

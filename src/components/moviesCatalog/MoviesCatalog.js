@@ -1,5 +1,5 @@
 import { Card } from 'antd';
-import React from 'react';
+import React, { Loading, Lazy } from 'react';
 import { Link } from 'react-router-dom';
 import './moviesCatalog.scss';
 
@@ -9,7 +9,6 @@ export const MoviesCatalog = ({movies}) => {
             <div className="row">
                     {
                         results.map( movie => (
-
                             <MovieCard 
                                 key={movie.id}
                                 movie = {movie}/>
