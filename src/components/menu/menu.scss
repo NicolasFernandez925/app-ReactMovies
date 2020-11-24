@@ -31,7 +31,7 @@
     .menu__nav-link{
         margin-left: 50px;
         background-color:rgb(0, 33, 59);
-        transition: 500ms ease-in;
+        transition: 200ms ease-in;
 
     }
     .selected{
@@ -63,7 +63,7 @@
             }
         }  
         .active-submenu{
-            top: -100%;
+            left: -100%;
         }
         
     }
