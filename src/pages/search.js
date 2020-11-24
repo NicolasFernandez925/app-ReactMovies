@@ -18,6 +18,7 @@ const Search = (props) => {
     useEffect(() => {
 
         (async() => {
+         
             const searchValue = queryString.parseUrl(location.search);
             const { s } = searchValue.query;
             const response = await fetch(`
@@ -26,7 +27,7 @@ const Search = (props) => {
             const movies = await response.json();
             setMovieList(movies);
             setSearchValue(s);
-
+            
         })()
         
     }, [search])
@@ -50,22 +51,15 @@ const Search = (props) => {
                     
                     />
                </div>
-    
-                    {
-                        (movieList.results && movieList.results.length > 1) ?
-                            (   <div className="col-12">
-                                    <MoviesCatalog movies ={movieList} />
-                                </div>
-                            )
-                            
-                        : (searchValue !== '' && movieList.results.length <= 0) ?
-                            (   <div className="col-12 text-center">
-                                    <h4>No hay resultados...</h4>
-                                </div>
-                            )
-                        : ''
+                       
+                    { (() => 
+                        {if (movieList.results) 
+                            if (movieList.results && movieList.results.length > 1) 
+                                return <div className="col-12"><MoviesCatalog movies ={movieList} /></div>
+                            else if((searchValue !== '' && movieList.results.length <= 0))
+                                return <div className="col-12 text-center"><h4>No hay resultados...</h4></div>                            
+                        })() 
                     }
-                    
            </div>
         </div>
     )
